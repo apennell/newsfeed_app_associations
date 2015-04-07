@@ -1,0 +1,24 @@
+<!--views/authors/index.ejs-->
+<!DOCTYPE HTML>
+<html>
+<body>
+	<h1><i>Daily Planet</i></h1>
+	<h1>All Reporters</h1>
+	<% ejsAuthors.forEach(function(author) { %>
+	<div>
+	  <a href="/authors/<%= author.id %>"><%= author.first_name %> <%= author.last_name  %></a>
+	</div>
+	<% }) %>
+	<br><br><br>
+		<a href="/">Home</a>
+		<br>
+		<a href="/articles">News</a>
+		<br>
+		<a href="/authors">Reporters</a>
+		<br>
+		<a href="/about">About</a>
+		<br>
+		<a href="/contact">Contact</a>
+</body>
+</html>
+

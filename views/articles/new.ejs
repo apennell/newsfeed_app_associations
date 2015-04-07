@@ -1,0 +1,33 @@
+<!--views/articles/new.ejs-->
+<!DOCTYPE html>
+
+<html>
+  <head>
+  </head>
+  <body>
+    <h1><i>Daily Planet</i></h1>
+    <br>
+    <h1>Add an article</h1>
+    <form method="post" action="/articles">
+      <input type="text" name="article[title]" placeholder="Article title"><br /><br>
+      <select name="article[AuthorId]">
+        <option value="">Select an author...</option>
+        <% ejsAuthors.forEach(function(author) { %>
+          <option value="<%= author.id %>"><%= author.first_name %> <%= author.last_name %></option>
+        <% })  %>
+      </select>
+      <br />
+      <br>
+      <textarea name="article[content]"></textarea><br />
+      <button>Save </button>
+    </form>
+    <br><br><br>
+  <a href="/">Home</a>
+  <br>
+  <a href="/articles">News</a>
+  <br>
+  <a href="/about">About</a>
+  <br>
+  <a href="/contact">Contact</a>
+  </body>
+</html>

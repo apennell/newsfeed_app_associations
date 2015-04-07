@@ -1,0 +1,29 @@
+<!--views/articles/index.ejs-->
+<!DOCTYPE HTML>
+<html>
+<body>
+	<h1><i>Daily Planet</i></h1>
+	<div style="border: solid 1px black; width: 300px; padding: 0px 20px;">
+	<p><a href="/articles/new" title="New Article">Create a New Article</a> | <a href="/authors/new" title="New Author">Create a New Reporter</a></p>
+	</div>
+
+	<h2>News</h2>
+
+	<% articlesList.forEach(function(article) { %>
+	<div style="margin-top: 10px;">
+	  <a href="/articles/<%= article.id %>"><strong><%= article.title %></strong></a><br />
+	  By <%= article.Author.first_name  %> <%= article.Author.last_name  %>
+	  <br />
+	</div>
+	<% }) %>
+	<br><br><br>
+	<a href="/">Home</a>
+  	<br>
+	<a href="/authors">Reporters</a>
+	<br>
+	<a href="/about">About</a>
+	<br>
+	<a href="/contact">Contact</a>
+
+</body>
+</html>
