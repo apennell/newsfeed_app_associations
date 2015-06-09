@@ -3,18 +3,23 @@
 var bcrypt = require("bcrypt");
 var salt = bcrypt.genSaltSync(10);
 
+// 
 module.exports = function (sequelize, DataTypes){
+  // sequelize.define acts as a constructor
   var User = sequelize.define('User', {
     email: { 
-      type: DataTypes.STRING, 
-      unique: true, 
+      type: DataTypes.STRING,
+      // can only be one in the db
+      unique: true,
       validate: {
+        // min length 6, max length 30
         len: [6, 30],
       }
     },
     passwordDigest: {
       type:DataTypes.STRING,
       validate: {
+        // must contain password/can't be empty
         notEmpty: true
       }
     }
@@ -22,11 +27,16 @@ module.exports = function (sequelize, DataTypes){
 
   {
     instanceMethods: {
+      // call these instance methods in app.js with:
+      // var user = db.User.find(1);
+      // user.checkPassword("passwordblah");
       checkPassword: function(password) {
         return bcrypt.compareSync(password, this.passwordDigest);
       }
     },
     classMethods: {
+      // You call these like this:
+      // db.User.encryptPassword
       encryptPassword: function(password) {
         var hash = bcrypt.hashSync(password, salt);
         return hash;

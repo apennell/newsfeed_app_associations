@@ -56,10 +56,10 @@ app.post("/signup", function (req, res) {
   var user = req.body.user;
 
   // create the new user
-  db.User.
-    createSecure(user.email, user.password).
-    then(function(){
-        res.send("SIGNED UP!");
+  db.User
+    .createSecure(user.email, user.password)
+    .then(function(){
+        res.redirect("users/login");
       });
 });
 
@@ -78,7 +78,7 @@ app.post("/login", function (req, res) {
     });
 });
 
-app.get("/profile", function (req, res) {
+app.get('/profile', function (req, res) {
   req.currentUser()
       .then(function (user) {
         res.render("users/profile", {user: user});
